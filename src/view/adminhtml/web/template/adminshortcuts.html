@@ -2,35 +2,11 @@
     <h2>Keyboard Shortcuts</h2>
     <div class="col-m-6">
         <h3>Navigation Shortcuts</h3>
-        <ul>
+        <ul data-bind="foreach: getShortcuts">
             <li>
                 <dl>
-                    <dt>Go to Dashboard</dt>
-                    <dd><span class="key">g</span> then <span class="key">d</span></dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>Go to Sales Orders</dt>
-                    <dd><span class="key">g</span> then <span class="key">s</span></dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>Go to Products</dt>
-                    <dd><span class="key">g</span> then <span class="key">p</span></dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>Go to Customers</dt>
-                    <dd><span class="key">g</span> then <span class="key">c</span></dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>Go to System Configuration</dt>
-                    <dd><span class="key">g</span> then <span class="key">x</span></dd>
+                    <dt>Go to <span data-bind="text: name"></span></dt>
+                    <dd><span data-bind="text: shortcut" class="key"></span></dd>
                 </dl>
             </li>
         </ul>
@@ -53,13 +29,13 @@
             <li>
                 <dl>
                     <dt>Grid - Next Page</dt>
-                    <dd><span class="key">j</span></dd>
+                    <dd><span data-bind="text: getNext" class="key"></span></dd>
                 </dl>
             </li>
             <li>
                 <dl>
                     <dt>Grid - Previous Page</dt>
-                    <dd><span class="key">k</span></dd>
+                    <dd><span data-bind="text: getPrevious" class="key"></span></dd>
                 </dl>
             </li>
             <li>

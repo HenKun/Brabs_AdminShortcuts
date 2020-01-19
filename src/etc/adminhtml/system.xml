@@ -10,12 +10,30 @@
             <tab>brabs</tab>
             <resource>Brabs_AdminShortcuts::config</resource>
 
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="0">
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInStore="0">
                 <label>General</label>
 
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="shortcuts" translate="label comment" type="select" sortOrder="2" showInDefault="1" canRestore="1">
+                    <label>Shortcuts</label>
+                    <depends><field id="*/*/enable">1</field></depends>
+                    <frontend_model>Brabs\AdminShortcuts\Block\Adminhtml\Form\Field\Shortcuts</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <tooltip>Name: just for your reference\nShortcut: The shortcut for the action in Mousetrap syntax. e.g. "g o"\nUI ID: The data-ui-id of the link within the admin menu\nParams: Optional params that should be appended to the link, but don't include the form key. e.g. </tooltip>
+                </field>
+
+                <field id="next" translate="label comment" type="text" sortOrder="3" showInDefault="1" canRestore="1">
+                    <label>Next shortcut</label>
+                    <depends><field id="*/*/enable">1</field></depends>
+                </field>
+
+                <field id="previous" translate="label comment" type="text" sortOrder="4" showInDefault="1" canRestore="1">
+                    <label>Previous shortcut</label>
+                    <depends><field id="*/*/enable">1</field></depends>
                 </field>
             </group>
         </section>

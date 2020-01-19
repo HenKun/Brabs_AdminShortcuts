@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <brabs_adminshortcuts>
+            <general>
+                <enabled>1</enabled>
+                <next>j</next>
+                <previous>k</previous>
+                <shortcuts>
+                    <![CDATA[
+                    [
+                        {
+                            name: 'Orders',
+                            id: 'menu-magento-sales-sales-order',
+                            shortcut: 'g o',
+                            params: ''
+                        },
+                        {
+                            name: 'Invoices',
+                            id: 'menu-magento-sales-sales-invoice',
+                            shortcut: 'g i',
+                            params: ''
+                        },
+                        {
+                            name: 'Dashboard',
+                            id: 'menu-magento-backend-dashboard',
+                            shortcut: 'g d',
+                            params: ''
+                        },
+                        {
+                            name: 'Customers',
+                            id: 'menu-magento-customer-customer-manage',
+                            shortcut: 'g c',
+                            params: ''
+                        },
+                        {
+                            name: 'Products',
+                            id: 'menu-magento-catalog-catalog-products',
+                            shortcut: 'g p',
+                            params: ''
+                        },
+                        {
+                            name: 'System Config',
+                            id: 'menu-magento-config-system-config',
+                            shortcut: 'g x',
+                            params: ''
+                        }
+                    ]
+                    ]]>
+                </shortcuts>
+            </general>
+        </brabs_adminshortcuts>
+    </default>
+</config>

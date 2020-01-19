@@ -2,6 +2,7 @@
 
 namespace Brabs\AdminShortcuts\Block\Adminhtml;
 
+use Brabs\AdminShortcuts\Helper\Config;
 use Magento\Backend\Block\Template;
 use Magento\Store\Model\ScopeInterface;
 
@@ -11,11 +12,10 @@ use Magento\Store\Model\ScopeInterface;
  */
 class Shortcuts extends Template
 {
-
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var Config
      */
-    protected $scopeConfig;
+    private $config;
 
     /**
      * Shortcuts constructor.
@@ -23,12 +23,12 @@ class Shortcuts extends Template
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        Config $config,
         \Magento\Backend\Block\Template\Context $context,
         array $data = []
     ) {
-        $this->scopeConfig = $scopeConfig;
         parent::__construct($context, $data);
+        $this->config = $config;
     }
 
     /**
@@ -55,7 +55,12 @@ class Shortcuts extends Template
         /** @TODO - Make customisable shortcuts per user? */
         $data = [
             'components' => [
-                'admin-shortcuts-container' => [ ]
+                'admin-shortcuts-container' =>
+                    [
+                        'shortcuts' => $this->config->getShortcuts(),
+                        'next' => $this->config->getNext(),
+                        'previous' => $this->config->getPrevious()
+                    ]
             ]
         ];
 
@@ -69,7 +74,7 @@ class Shortcuts extends Template
      */
     public function isEnabled($websiteCode = null)
     {
-        return $this->scopeConfig->isSetFlag('brabs_adminshortcuts/general/enabled', ScopeInterface::SCOPE_WEBSITE, $websiteCode);
+        $this->config->isEnabled();
     }
 
 }

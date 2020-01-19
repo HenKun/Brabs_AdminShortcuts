@@ -36,8 +36,7 @@ define(
             Mousetrap.init();
         }) (Mousetrap);
 
-        /* Open keyboard shortcut modal info window */
-        Mousetrap.bind('?', function() { openModal(); });
+
 
         /* Go to products */
         Mousetrap.bind('g p', function() { execShortcut('menu-magento-catalog-catalog-products'); });
@@ -54,6 +53,9 @@ define(
         /* Go to dashboard */
         Mousetrap.bind('g d', function() { execShortcut('menu-magento-backend-dashboard'); });
 
+        /* Open keyboard shortcut modal info window */
+        Mousetrap.bind('?', function() { openModal(); });
+
         /* Open Filters */
         Mousetrap.bind('/', function() {
             jQuery("button[data-action='grid-filter-expand']").click();
@@ -69,11 +71,11 @@ define(
         /* Pagination on grids */
         /* Previous */
         Mousetrap.bind('k', function() {
-            jQuery('div[data-role="data-grid-toolbar"]').find('button.action-previous').click();
+            jQuery('.admin__data-grid-pager').find('button.action-previous').click();
         });
         /* Next */
         Mousetrap.bind('j', function() {
-            jQuery('div[data-role="data-grid-toolbar"]').find('button.action-next').click();
+            jQuery('.admin__data-grid-pager').find('button.action-next').click();
         });
 
         /* Global Search */
@@ -113,6 +115,27 @@ define(
             initialize: function () {
                 this._super();
             },
+
+            getShortcuts: function () {
+                return [
+                    {
+                        name: "test",
+                        shortcut: "b v"
+                    } ,
+                    {
+                        name: "test2",
+                        shortcut: "n v"
+                    }
+                ];
+            },
+
+            getNext: function () {
+                return "p";
+            },
+
+            getPrevious: function () {
+                return "l";
+            }
 
         });
 
