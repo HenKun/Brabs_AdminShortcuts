@@ -3,9 +3,9 @@
 
 namespace Brabs\AdminShortcuts\Helper;
 
-
 use Brabs\AdminShortcuts\Model\Shortcut;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Config
 {

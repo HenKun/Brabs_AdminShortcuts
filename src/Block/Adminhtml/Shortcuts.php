@@ -4,7 +4,6 @@ namespace Brabs\AdminShortcuts\Block\Adminhtml;
 
 use Brabs\AdminShortcuts\Helper\Config;
 use Magento\Backend\Block\Template;
-use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Shortcuts
