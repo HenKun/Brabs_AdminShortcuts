@@ -36,108 +36,92 @@ define(
             Mousetrap.init();
         }) (Mousetrap);
 
-
-
-        /* Go to products */
-        Mousetrap.bind('g p', function() { execShortcut('menu-magento-catalog-catalog-products'); });
-
-        /* Go to orders */
-        Mousetrap.bind('g o', function() { execShortcut('menu-magento-sales-sales-order'); });
-
-        /* Go to customers */
-        Mousetrap.bind('g c', function() { execShortcut('menu-magento-customer-customer-manage'); });
-
-        /* Go to system configuration */
-        Mousetrap.bind('g x', function() { execShortcut('menu-magento-config-system-config'); });
-
-        /* Go to dashboard */
-        Mousetrap.bind('g d', function() { execShortcut('menu-magento-backend-dashboard'); });
-
-        /* Open keyboard shortcut modal info window */
-        Mousetrap.bind('?', function() { openModal(); });
-
-        /* Open Filters */
-        Mousetrap.bind('/', function() {
-            jQuery("button[data-action='grid-filter-expand']").click();
-            jQuery('div[data-part="filter-form"]:not(.filter) :input:visible:enabled:first').focus();
-            return false;
-        });
-
-        /* Apply filter on enter */
-        Mousetrap.bind('enter', function() {
-            jQuery('button[data-action="grid-filter-apply"]').click();
-        });
-
-        /* Pagination on grids */
-        /* Previous */
-        Mousetrap.bind('k', function() {
-            jQuery('.admin__data-grid-pager').find('button.action-previous').click();
-        });
-        /* Next */
-        Mousetrap.bind('j', function() {
-            jQuery('.admin__data-grid-pager').find('button.action-next').click();
-        });
-
-        /* Global Search */
-        Mousetrap.bind('shift+f', function() {
-            jQuery('.search-global-label').click();
-            return false;
-        });
-
-        function openModal() {
-
-            this.modal = jQuery('#brabs-admin-shortcuts-modal').modal({
-                modalClass: 'modal-system-messages ui-popup-message',
-                type: 'popup',
-                buttons: []
-            });
-
-            jQuery("#brabs-admin-shortcuts-modal").removeClass("hidden");
-
-            this.modal.modal('openModal');
-
-        }
-
-        function execShortcut(cssClass) {
-            var href = jQuery("li[data-ui-id='" + cssClass + "'] a").attr("href");
-            if (href) {
-                window.setLocation(href);
-            } else {
-                alert("Shortcut not available");
-            }
-        }
-
         return Component.extend({
             defaults: {
                 template: 'Brabs_AdminShortcuts/adminshortcuts'
             },
 
-            initialize: function () {
+            next: ko.observable(),
+            previous: ko.observable(),
+            shortcuts: ko.observable(),
+
+            initialize: function (config) {
+                var self = this;
+                this.next(config.next);
+                this.previous(config.previous);
+                this.shortcuts(config.shortcuts);
                 this._super();
+
+                config.shortcuts.forEach(function(val) {
+                    Mousetrap.bind(val['shortcut'],
+                        function()
+                        {
+                            self.execShortcut(val['id'], val['params']);
+                        });
+                });
+
+                /* Open keyboard shortcut modal info window */
+                Mousetrap.bind('?', function() { self.openModal(); });
+
+                /* Open Filters */
+                Mousetrap.bind('/', function() {
+                    jQuery("button[data-action='grid-filter-expand']").click();
+                    jQuery('div[data-part="filter-form"]:not(.filter) :input:visible:enabled:first').focus();
+                    return false;
+                });
+
+                /* Apply filter on enter */
+                Mousetrap.bind('enter', function() {
+                    jQuery('button[data-action="grid-filter-apply"]').click();
+                });
+
+                /* Pagination on grids */
+                /* Previous */
+                Mousetrap.bind(config.previous, function() {
+                    jQuery('.admin__data-grid-pager').find('button.action-previous').click();
+                });
+                /* Next */
+                Mousetrap.bind(config.next, function() {
+                    jQuery('.admin__data-grid-pager').find('button.action-next').click();
+                });
+
+                /* Global Search */
+                Mousetrap.bind('shift+f', function() {
+                    jQuery('.search-global-label').click();
+                    return false;
+                });
             },
 
-            getShortcuts: function () {
-                return [
-                    {
-                        name: "test",
-                        shortcut: "b v"
-                    } ,
-                    {
-                        name: "test2",
-                        shortcut: "n v"
-                    }
-                ];
+            format: function (short) {
+                short = short.replace(" ", "-----");
+                short = short.replace( /([a-zA-Z0-9]+)/gm, "<span class='key'>$1</span>");
+                short = short.replace("-----", " then ");
+                short = short.replace("+", " + ");
+                return short;
             },
 
-            getNext: function () {
-                return "p";
+            openModal: function() {
+
+                this.modal = jQuery('#brabs-admin-shortcuts-modal').modal({
+                    modalClass: 'modal-system-messages ui-popup-message',
+                    type: 'popup',
+                    buttons: []
+                });
+
+                jQuery("#brabs-admin-shortcuts-modal").removeClass("hidden");
+
+                this.modal.modal('openModal');
+
             },
 
-            getPrevious: function () {
-                return "l";
+            execShortcut: function(cssClass, params) {
+                var href = jQuery("li[data-ui-id='" + cssClass + "'] a").attr("href");
+                if (href) {
+                    window.setLocation(href.replace(/\/$/, "") + "/" + params.replace(/^\//, ""));
+                } else {
+                    alert("Shortcut not available");
+                }
             }
-
         });
-
     }
 );

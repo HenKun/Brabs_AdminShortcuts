@@ -73,7 +73,7 @@ class Shortcuts extends Template
      */
     public function isEnabled($websiteCode = null)
     {
-        $this->config->isEnabled();
+        return $this->config->isEnabled();
     }
 
 }

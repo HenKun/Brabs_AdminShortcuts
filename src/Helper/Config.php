@@ -35,21 +35,17 @@ class Config
      */
     public function getShortcuts()
     {
-        return json_decode($this->scopeConfig->getValue(self::PATH . self::FIELD_SHORTCUT, ScopeInterface::SCOPE_STORE));
-        /**
-         * @var $shortcuts Shortcut[]
-         */
         $shortcuts = [];
-        $shortcuts_raw = json_decode($this->scopeConfig->getValue(self::PATH . self::FIELD_SHORTCUT, ScopeInterface::SCOPE_STORE));
+        $shortcutsRaw = json_decode($this->scopeConfig->getValue(self::PATH . self::FIELD_SHORTCUT, ScopeInterface::SCOPE_STORE));
 
-        foreach($shortcuts_raw as $shortcut)
+        foreach($shortcutsRaw as $shortcut)
         {
-            $shortcuts[] = new Shortcut(
-                $shortcut->name,
-                $shortcut->shortcut,
-                $shortcut->id,
-                $shortcut->params
-            );
+            $shortcuts[] = [
+                'name' => $shortcut->name,
+                'id' => $shortcut->id,
+                'shortcut' => $shortcut->shortcut,
+                'params' => $shortcut->params
+            ];
         }
 
         return $shortcuts;

@@ -9,44 +9,44 @@
                 <previous>k</previous>
                 <shortcuts>
                     <![CDATA[
-                    [
-                        {
+                    {
+                        "_orders_": {
                             name: 'Orders',
                             id: 'menu-magento-sales-sales-order',
                             shortcut: 'g o',
                             params: ''
                         },
-                        {
+                        "_invoices_": {
                             name: 'Invoices',
                             id: 'menu-magento-sales-sales-invoice',
                             shortcut: 'g i',
                             params: ''
                         },
-                        {
+                        "_dashboard_": {
                             name: 'Dashboard',
                             id: 'menu-magento-backend-dashboard',
                             shortcut: 'g d',
                             params: ''
                         },
-                        {
+                        "_customers_": {
                             name: 'Customers',
                             id: 'menu-magento-customer-customer-manage',
                             shortcut: 'g c',
                             params: ''
                         },
-                        {
+                        "_products_": {
                             name: 'Products',
                             id: 'menu-magento-catalog-catalog-products',
                             shortcut: 'g p',
                             params: ''
                         },
-                        {
+                        "_config_": {
                             name: 'System Config',
                             id: 'menu-magento-config-system-config',
                             shortcut: 'g x',
                             params: ''
                         }
-                    ]
+                    }
                     ]]>
                 </shortcuts>
             </general>
