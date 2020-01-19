@@ -23,7 +23,7 @@
                     <depends><field id="*/*/enable">1</field></depends>
                     <frontend_model>Brabs\AdminShortcuts\Block\Adminhtml\Form\Field\Shortcuts</frontend_model>
                     <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
-                    <tooltip>Name: just for your reference\nShortcut: The shortcut for the action in Mousetrap syntax. e.g. "g o"\nUI ID: The data-ui-id of the link within the admin menu\nParams: Optional params that should be appended to the link, but don't include the form key. e.g. </tooltip>
+                    <tooltip><![CDATA[<strong>Name:</strong> For your reference<br /><strong>Shortcut:</strong> The shortcut for the action in Mousetrap syntax. e.g. "g o" or "shift+g"<br /><strong>UI ID:</strong> The data-ui-id of the link within the admin menu<br /><strong>Params:</strong> Optional params that should be appended to the link, but don't include the form key. e.g. "id/34/type/this"]]></tooltip>
                 </field>
 
                 <field id="next" translate="label comment" type="text" sortOrder="3" showInDefault="1" canRestore="1">
