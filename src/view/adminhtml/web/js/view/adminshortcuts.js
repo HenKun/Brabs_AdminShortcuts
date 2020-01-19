@@ -66,7 +66,6 @@ define(
                 /* Open Filters */
                 Mousetrap.bind('/', function() {
                     jQuery("button[data-action='grid-filter-expand']").click();
-                    jQuery('div[data-part="filter-form"]:not(.filter) :input:visible:enabled:first').focus();
                     return false;
                 });
 
@@ -93,10 +92,10 @@ define(
             },
 
             format: function (short) {
-                short = short.replace(" ", "-----");
+                short = short.replace(/ /gm, "-----");
                 short = short.replace( /([a-zA-Z0-9]+)/gm, "<span class='key'>$1</span>");
-                short = short.replace("-----", " then ");
-                short = short.replace("+", " + ");
+                short = short.replace(/-----/gm, " then ");
+                short = short.replace(/\+/gm, " + ");
                 return short;
             },
 
