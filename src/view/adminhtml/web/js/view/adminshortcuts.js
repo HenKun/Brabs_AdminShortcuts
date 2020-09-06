@@ -21,7 +21,7 @@ define(
                 }
 
                 /** Customisation for applying filters automatically **/
-                if (combo == 'enter' && jQuery(element).parents('div[data-part="filter-form"]')) {
+                if (combo == 'enter' && jQuery(element).parents('div[data-part="filter-form"]').length) {
                     jQuery(element).trigger('blur');
                     return false;
                 }

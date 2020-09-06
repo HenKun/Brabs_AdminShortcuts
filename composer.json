@@ -2,7 +2,7 @@
     "name": "brabs/module-adminshortcuts",
     "description": "Gmail / JIRA style shortcuts for the Magento 2 Admin Panel",
     "type": "magento2-module",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "authors": [
         {
             "name": "Chris Brabender",
